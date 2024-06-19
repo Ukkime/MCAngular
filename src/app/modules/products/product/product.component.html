@@ -1,0 +1,24 @@
+<div *ngIf="product" class="product">
+    <h1>{{ product.display_name }}</h1>
+    <img [src]="product.thumbnail" [alt]="product.display_name">
+    <div class="price">
+       <button (click)="addToCart(product)"> Comprar </button>
+       <br/><br/>
+        Precio: {{ product.price_instructions.unit_price }}€/paquete ({{ product.price_instructions.bulk_price }}€/kg)
+    </div>
+    <div class="details">
+        <p><strong>Marca:</strong> {{ product.details.brand }}</p>
+        <p><strong>Origen:</strong> {{ product.details.origin }}</p>
+        <p><strong>EAN:</strong> {{ product.ean }}</p>
+        <p><strong>Proveedor:</strong> {{ product.details.suppliers[0].name }}</p>
+        <p><strong>Nombre Legal:</strong> {{ product.details.legal_name }}</p>
+        <p><strong>Descripción:</strong> {{ product.details.description }}</p>
+    </div>
+    <div class="origin">
+        <p><strong>Instrucciones de uso:</strong> {{ product.details.usage_instructions }}</p>
+        <p><strong>Instrucciones de almacenamiento:</strong> {{ product.details.storage_instructions }}</p>
+    </div>
+    <div class="gallery">
+        <img *ngFor="let photo of product.photos" [src]="photo.thumbnail" alt="Vista alternativa del producto">
+    </div>
+</div>

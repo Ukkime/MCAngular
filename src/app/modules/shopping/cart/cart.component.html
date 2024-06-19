@@ -1,0 +1,37 @@
+<div *ngIf="cart.length > 0" class="container">
+  <h2>Productos en el Carrito (Total: {{precioTotal}})</h2>
+  <table class="cart-table">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Precio</th>
+        <th>Marca</th>
+        <th>Origen</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cart" class="cart-item">
+        <td>
+          <div class="product-info">
+            <img [src]="item.thumbnail" [alt]="item.display_name" class="product-thumbnail">
+            <div>
+              <h3>{{ item.display_name | uppercasecustom }}</h3>
+              <p>{{ item.details.description }}</p>
+            </div>
+          </div>
+        </td>
+        <td>{{ item.price_instructions.unit_price }}€/paquete ({{ item.price_instructions.bulk_price }}€/kg)</td>
+        <td>{{ item.details.brand }}</td>
+        <td>{{ item.details.origin }}</td>
+        <td>
+            <button (click)="removeFromCart(item)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-totalprice [products]="cart" (totalRefresh)="handleTotalRefresh($event)"></app-totalprice>
+</div>
+<div *ngIf="cart.length === 0">
+  <p>No hay productos en el carrito.</p>
+</div>

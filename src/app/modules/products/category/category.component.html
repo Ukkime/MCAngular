@@ -1,0 +1,29 @@
+<div class="container" *ngIf="selectedCategory == null">
+  <div *ngFor="let results of categories">
+    <h2>{{ results.name }}</h2>
+    <div class="card-container">
+      <div class="card" *ngFor="let c of results.categories" (click)="openCategory(c.id)">
+        <div class="card-body">
+          <p class="card-title">#{{ c.id }}</p>
+          <p class="card-text">{{ c.name }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="selectedCategory != null">
+  <button (click)="volver()">Back</button>
+  <div *ngFor="let categories of products">
+    <h2>{{ categories.name }}</h2>
+    <div class="card-container">
+      <div class="card" *ngFor="let c of categories.products">
+        <div class="card-body" [routerLink]="['product', c.id]">
+          <img src="{{ c.thumbnail }}" alt="{{ c.display_name }}" class="card-img-top">
+          <p class="card-title">#{{ c.id }}</p>
+          <p class="card-text">{{ c.display_name }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
