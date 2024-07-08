@@ -1,0 +1,8 @@
+<mat-list>
+  <mat-list-item *ngFor="let item of items; let i = index" class="swipe-item">
+    <div class="item-container" [class.swiped]="item.swiped" (swipeleft)="onSwipeLeft(i)" (swiperight)="onSwipeRight(i)">
+      <span>{{ item.name }}</span>
+      <button mat-button color="warn" class="delete-button" (click)="deleteItem(i)">Delete</button>
+    </div>
+  </mat-list-item>
+</mat-list>
